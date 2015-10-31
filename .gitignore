@@ -5,3 +5,7 @@
 .DS_Store
 /build
 /captures
+*.iml
+proguard-rules.pro
+gradle.properties
+/.idea
