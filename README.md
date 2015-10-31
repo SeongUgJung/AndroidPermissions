@@ -38,20 +38,22 @@ AndroidPermissions.check(this)
 
 ```java
 
-AndroidPermissions.result(MainActivity.this)
-    .addPermissions(REQUEST_CODE, Manifest.permission.CALL_PHONE)
-    .putActions(REQUEST_CODE, new Result.Action0() {
-        @Override
-        public void call() {
-            // do something..
-        }
-    }, new Result.Action1() {
-        @Override
-        public void call(String[] hasPermissions, String[] noPermissions) {
-            // do something..
-        }
-    })
-    .result(requestCode, permissions, grantResults);
+public void onRequestPermissionsResult(int requestCode, final String[] permissions, int[] grantResults) {
+    AndroidPermissions.result(MainActivity.this)
+        .addPermissions(REQUEST_CODE, Manifest.permission.CALL_PHONE)
+        .putActions(REQUEST_CODE, new Result.Action0() {
+            @Override
+            public void call() {
+                // do something..
+            }
+        }, new Result.Action1() {
+            @Override
+            public void call(String[] hasPermissions, String[] noPermissions) {
+                // do something..
+            }
+        })
+        .result(requestCode, permissions, grantResults);
+}
 
 ```
 
