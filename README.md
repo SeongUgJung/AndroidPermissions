@@ -1,7 +1,5 @@
 # Android Permissions Checker
 
-====
-
 Android M was added to check Permission.
 but Permission check processing is so dirty.
 
@@ -9,13 +7,9 @@ This Project is to be simple, Checking permissions.
 
 # Install
 
-----
-
 I'm ready to deploy. I need more time. sorry.
   
 # How to use
-
-----
 
 * To check permissions
 
@@ -26,25 +20,13 @@ AndroidPermissions.check(this)
     .hasPermissions(new Checker.Action0() {
         @Override
         public void call(String[] permissions) {
-            String msg = "Permission has " + permissions[0];
-            Log.d(TAG, msg);
-            Toast.makeText(MainActivity.this,
-                    msg,
-                    Toast.LENGTH_SHORT).show();
+            // do something..
         }
     })
     .noPermissions(new Checker.Action1() {
         @Override
         public void call(String[] permissions) {
-            String msg = "Permission has no " + permissions[0];
-            Log.d(TAG, msg);
-            Toast.makeText(MainActivity.this,
-                    msg,
-                    Toast.LENGTH_SHORT).show();
-
-            ActivityCompat.requestPermissions(MainActivity.this
-                    , new String[]{Manifest.permission.CALL_PHONE}
-                    , REQUEST_CODE);
+            // do something..
         }
     })
     .check();
@@ -61,20 +43,12 @@ AndroidPermissions.result(MainActivity.this)
     .putActions(REQUEST_CODE, new Result.Action0() {
         @Override
         public void call() {
-            String msg = "Request Success : " + permissions[0];
-            Toast.makeText(MainActivity.this,
-                    msg,
-                    Toast.LENGTH_SHORT).show();
-
+            // do something..
         }
     }, new Result.Action1() {
         @Override
         public void call(String[] hasPermissions, String[] noPermissions) {
-            String msg = "Request Fail : " + noPermissions[0];
-            Toast.makeText(MainActivity.this,
-                    msg,
-                    Toast.LENGTH_SHORT).show();
-
+            // do something..
         }
     })
     .result(requestCode, permissions, grantResults);
