@@ -1,4 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+group = 'com.nobrain.android.permissions'
+version = '1.0.0'
 
 android {
     compileSdkVersion 23
@@ -8,7 +12,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
     buildTypes {
         release {
@@ -19,7 +23,51 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.0'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+
+            configuration = configurations.archives
+
+            repository(url: uri('./repo'))
+            pom.project {
+                name 'Android Permission Checker'
+                description "It's for checing Android Permissions on Runtime"
+                url 'https://github.com/ZeroBrain/AndroidPermissions'
+                inceptionYear '2015'
+                packaging 'jar'
+
+                scm {
+                    url 'https://github.com/ZeroBrain/AndroidPermissions'
+                    connection 'scm:git:git://github.com/ZeroBrain/AndroidPermissions.git'
+                    developerConnection 'scm:git:ssh://git@github.com/ZeroBrain/AndroidPermissions.git'
+                    tag 'HEAD'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+                organization {
+                    name 'Nobrain'
+                    url 'https://medium.com/@jsuch2362'
+                }
+
+                developers {
+                    developer {
+                        id 'jsuch2362'
+                        name 'Steve SeongUg Jung'
+                        email 'jsuch2362@gmail.com'
+                    }
+                }
+            }
+
+        }
+    }
 }
