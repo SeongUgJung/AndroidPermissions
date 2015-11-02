@@ -7,7 +7,14 @@ This Project is to be simple, Checking permissions.
 
 # Install
 
-I'm ready to deploy. I need more time. sorry.
+```
+repositories {
+    jcenter()
+}
+
+compile 'com.nobrain.android.permissions:library:1.0.0'
+```
+
   
 # How to use
 
