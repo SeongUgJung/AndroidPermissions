@@ -10,7 +10,9 @@ import java.util.Set;
 
 public class Result {
 
-    // first = hasPermissions, second = noPermissions
+    /*
+     * first = hasPermissions, second = noPermissions
+     */
     private SparseArray<Pair<Action0, Action1>> actions;
     private SparseArray<String[]> permissions;
 
@@ -19,6 +21,11 @@ public class Result {
         permissions = new SparseArray<String[]>();
     }
 
+    /**
+     * @param requestCode requestCode, less than 8bit
+     * @param permissions permissions
+     * @return {@link Result}
+     */
     public Result addPermissions(int requestCode, String... permissions) {
 
         this.permissions.append(requestCode, permissions);
@@ -26,17 +33,34 @@ public class Result {
         return this;
     }
 
+    /**
+     * @param requestCode    requestCode, less than 8bit
+     * @param hasPermissions execute action, if it granted all
+     * @param noPermissions  execute action, if it denied some permissions
+     * @return {@link Result}
+     */
     public Result putActions(int requestCode, Action0 hasPermissions, Action1 noPermissions) {
         this.actions.put(requestCode, new Pair<Action0, Action1>(hasPermissions, noPermissions));
         return this;
     }
 
-
+    /**
+     * @param requestCode    requestCode, less than 8bit
+     * @param hasPermissions execute action, if it granted all
+     * @return {@link Result}
+     */
     public Result putActions(int requestCode, Action0 hasPermissions) {
         this.actions.put(requestCode, new Pair<Action0, Action1>(hasPermissions, null));
         return this;
     }
 
+    /**
+     * arguments of {@link android.app.Activity#onRequestPermissionsResult}
+     *
+     * @param requestCode  requested code
+     * @param permissions  requested permissions
+     * @param grantResults result
+     */
     public void result(int requestCode, String[] permissions, int[] grantResults) {
 
 
@@ -92,11 +116,25 @@ public class Result {
     }
 
 
+    /**
+     * action of granted all
+     */
     public interface Action0 {
+        /**
+         * action of granted all
+         */
         void call();
     }
 
+    /**
+     * action of denied some permission
+     */
     public interface Action1 {
+        /**
+         * action of denied some permission
+         * @param hasPermissions granted permission
+         * @param noPermissions denied permission
+         */
         void call(String[] hasPermissions, String[] noPermissions);
     }
 }

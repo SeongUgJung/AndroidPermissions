@@ -5,11 +5,21 @@ import android.os.Build;
 
 public class AndroidPermissions {
 
+    /**
+     * get instance of checking
+     * @param activity activity
+     * @return intance
+     */
     public static Checker check(Activity activity) {
 
         return new Checker(activity);
     }
 
+    /**
+     * get instance of onRequestPermissionsResult
+     * @param activity activity
+     * @return instance
+     */
     public static Result result(Activity activity) {
         return new Result();
     }

@@ -18,6 +18,12 @@ public class Checker {
         this.activity = activity;
     }
 
+    /**
+     * Add permissions for Checking
+     *
+     * @param permissions ex) {@code Manifest.permission.CALL_PHONE}
+     * @return {@link Checker}
+     */
     public Checker permissions(String... permissions) {
 
         this.permissions = permissions;
@@ -25,11 +31,23 @@ public class Checker {
         return this;
     }
 
+    /**
+     * execute Action, if all permissions have granted
+     *
+     * @param hasPermissions action, if it granted all
+     * @return {@link Checker}
+     */
     public Checker hasPermissions(Action0 hasPermissions) {
         this.hasPermissions = hasPermissions;
         return this;
     }
 
+    /**
+     * execute Action, if some permissions have denied
+     *
+     * @param noPermissions action, if it denied some permissions
+     * @return {@link Checker}
+     */
     public Checker noPermissions(Action1 noPermissions) {
         if (AndroidPermissions.isOverMarshmallow()) {
             this.noPermissions = noPermissions;
@@ -39,6 +57,9 @@ public class Checker {
         return this;
     }
 
+    /**
+     * execute checking
+     */
     public void check() {
 
         if (permissions == null || permissions.length < 0 || activity == null) {
@@ -72,19 +93,25 @@ public class Checker {
     }
 
 
+    /**
+     * action of granted all
+     */
     public interface Action0 {
         /**
          * define what if it has permission.
          *
-         * @param permissions
+         * @param permissions granted permissions
          */
         void call(String[] permissions);
     }
 
+    /**
+     * action of denied some permission
+     */
     public interface Action1 {
         /**
-         * @param permissions
-         * @return true, if it want to consume. otherwise false if it want to request permission
+         * define what if it has denied permission
+         * @param permissions denied permissions
          */
         void call(String[] permissions);
     }
