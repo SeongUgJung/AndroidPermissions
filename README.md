@@ -12,7 +12,7 @@ repositories {
     jcenter()
 }
 
-compile 'com.nobrain.android.permissions:library:1.0.0'
+compile 'com.nobrain.android.permissions:library:1.1.0'
 ```
 
   
@@ -63,7 +63,3 @@ public void onRequestPermissionsResult(int requestCode, final String[] permissio
 }
 
 ```
-
-## Why Interface's name is "Action0, Action1"
-
-It is not good naming. but I wish you to use Lambda Expression. [Gradle-RetroLambda](https://github.com/evant/gradle-retrolambda)
