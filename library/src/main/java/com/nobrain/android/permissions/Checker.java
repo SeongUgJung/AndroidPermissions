@@ -1,6 +1,6 @@
 package com.nobrain.android.permissions;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 
 import java.util.HashSet;
@@ -8,14 +8,14 @@ import java.util.Set;
 
 public class Checker {
 
-    private Activity activity;
+    private Context context;
 
     private String[] permissions;
     private Action0 hasPermissions;
     private Action1 noPermissions;
 
-    Checker(Activity activity) {
-        this.activity = activity;
+    Checker(Context context) {
+        this.context = context;
     }
 
     /**
@@ -62,7 +62,7 @@ public class Checker {
      */
     public void check() {
 
-        if (permissions == null || permissions.length < 0 || activity == null) {
+        if (permissions == null || permissions.length < 0 || context == null) {
             return;
         }
 
@@ -76,7 +76,7 @@ public class Checker {
         int length = permissions.length;
         Set<String> noPermissionSet = new HashSet<String>(length);
         for (int idx = 0; idx < length; idx++) {
-            if (activity.checkSelfPermission(permissions[idx]) != PackageManager.PERMISSION_GRANTED) {
+            if (context.checkSelfPermission(permissions[idx]) != PackageManager.PERMISSION_GRANTED) {
                 noPermissionSet.add(permissions[idx]);
             }
         }
